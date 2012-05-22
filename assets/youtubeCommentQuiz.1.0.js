@@ -3,7 +3,7 @@
 var URLIdentifier = 'youtubecommentquiz.phpfogapp.com'; // Needed for sharing functions and google analytics. E.g. 'example.com'.
 var soundcloudAPIKey = "49ede2994ee83a3410b36d842a98b5bb";
 var youtubeAPIKey = "AI39si4DeTiR_GEVmIcpGmSlKl0QksJjyyj2tD1usm8eYJ44NqqevbP5o9Vh01xRK2uaoMEHRjTdBbhQtthUnnXknIaySJ_vGg"; // youtube API key.
-var numberOfQuestions = 1; // Nomen est omen.
+var numberOfQuestions = 7; // Nomen est omen.
 var reloads = 3; // int: The global reload integer, indicates how many reloads are available during the game.
 var assetPath = 'http://youtubecommentquiz.phpfogapp.com/'; // URL to where the 'assets' directory is stored.
 var googleAnalyticsAccount = 'UA-3691657-11';
@@ -142,15 +142,15 @@ function fitStageElements(){
     var winHeight = $(document).height();  
     consoleMessage('winHeight: ' + winHeight);
     // Needed variables.
-    var topElement;
-    var topElementHeight;
-    var middleElement;
-    var middleElementHeight;
-    var bottomElement;
-    var bottomElementHeight;
-    var middleElementChild;
-    var middleElementPadding;
-    var unusedSpace;    
+    var topElement = '';
+    var topElementHeight = '';
+    var middleElement = '';
+    var middleElementHeight = '';
+    var bottomElement = '';
+    var bottomElementHeight = '';
+    var middleElementChild = '';
+    var middleElementPadding = '';
+    var unusedSpace = '';    
     // If 'stageTemplate' exists.
     if($('#youtubeCommentQuiz .stage').length){
         topElement = $('.stageTop');
@@ -335,10 +335,16 @@ function preloadImages(){
     consoleMessage('loadedImages: ' + loadedImages);    
 }
 
+// Define sounds.
+var soundTheme = '';
+var soundSword = '';
+var soundWin = '';
+var soundLoose = '';
+
 // Preload Sounds.
 var loadedSounds = 0;
 function preloadSounds(){           
-    // 4 Sounds.
+    // 4 Sounds.  
     soundTheme = SC.stream(35895898); // Theme music at the beginning and end.
     soundTheme.load();
     soundSword = SC.stream(34588862); // Sword, played when next/start button is clicked.
@@ -349,7 +355,7 @@ function preloadSounds(){
     soundWin.setVolume(40);
     soundLoose = SC.stream(34597605); // Loose sound on temp result stage.
     soundLoose.load();  
-    soundLoose.setVolume(40);  
+    soundLoose.setVolume(40);
 }
     
 // Play theme.
@@ -381,7 +387,7 @@ function loadingState(){
         loadedImagesListener=false;
     }
     // For sound readyState see http://www.schillmania.com/projects/soundmanager2/doc/#readystate.
-    if(soundTheme.readyState==3 && soundThemeListener!=false){ // 1=loading.
+    if(soundTheme.readyState==1 && soundThemeListener!=false){ // 1=loading.
         consoleMessage('soundTheme is loading.');
         loadedRessources++;
         soundThemeListener=false
