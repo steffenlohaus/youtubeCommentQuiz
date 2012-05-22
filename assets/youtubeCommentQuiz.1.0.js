@@ -1,11 +1,11 @@
 /* --------------------------------------------- globals ---------------------------------------- */
 
-var URLIdentifier = 'youtubecommentquiz.tumblr.com'; // Needed for sharing functions and google analytics. E.g. 'example.com'.
+var URLIdentifier = 'youtubecommentquiz.phpfogapp.com'; // Needed for sharing functions and google analytics. E.g. 'example.com'.
 var soundcloudAPIKey = "49ede2994ee83a3410b36d842a98b5bb";
 var youtubeAPIKey = "AI39si4DeTiR_GEVmIcpGmSlKl0QksJjyyj2tD1usm8eYJ44NqqevbP5o9Vh01xRK2uaoMEHRjTdBbhQtthUnnXknIaySJ_vGg"; // youtube API key.
 var numberOfQuestions = 1; // Nomen est omen.
 var reloads = 3; // int: The global reload integer, indicates how many reloads are available during the game.
-var assetPath = 'https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/'; // URL to where the 'assets' directory is stored.
+var assetPath = 'http://youtubecommentquiz.phpfogapp.com/'; // URL to where the 'assets' directory is stored.
 var googleAnalyticsAccount = 'UA-3691657-11';
 
 var debug = false; // Console messages while development.

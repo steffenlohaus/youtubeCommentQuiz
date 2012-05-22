@@ -1,7 +1,7 @@
 # youtubeCommentQuiz
 youtubeCommentQuiz is a Javascript based online application that provides a quiz where you have to decide to which of three random youtube-Videos a comment belongs.
 ## Demo
-See it on [youtubecommentquiz.tumblr.com/](http://youtubecommentquiz.tumblr.com/).
+See it on [youtubecommentquiz.phpfogapp.com](http://youtubecommentquiz.phpfogapp.com).
 ## APIs, plugins
 It´s a mashup requiring these nice APIs and plugins:
 - [YouTube API](http://code.google.com/intl/de-DE/apis/youtube/2.0/reference.html)
