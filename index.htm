@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC 
+  "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+    <title>youtubeCommentQuiz</title>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+    <script src="http://connect.soundcloud.com/sdk.js" type="text/JavaScript"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/jQuery.tubeplayer.min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/colorbox/colorbox/jquery.colorbox-min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/jcarousel/lib/jquery.jcarousel.min.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/jQueryRotateCompressed.2.1.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/youtubeCommentQuiz.1.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/colorbox/example4/colorbox.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/plugins/jcarousel/skins/tango/skin.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/youtubeCommentQuiz.1.0.css" />
+    <link rel="shortcut icon" href="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/youtubeCommentQuizFavicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/youtubeCommentQuizFavicon.ico" type="image/x-icon">
+    <script type="text/javascript">        
+        // Checks if index.htm is hosted on the URL as defined in 'URLIdentifier'.
+        if(document.URL.indexOf(URLIdentifier)==-1){
+            // console.log('No googleAnalytics.');
+        }else{
+            // Google Analytics.
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', googleAnalyticsAccount]);
+            _gaq.push(['_trackPageview']);        
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        };
+    </script>    
+    <meta property="og:title" content="youtubeCommentQuiz" />
+    <meta property="og:description" content="You'll get 7 questions, each with 3 videos and one comment. Now choose to which video a comment belongs." />
+    <meta property="og:image" content="http://youtubecommentquiz.s3.amazonaws.com/assets/images/thumbnail.png" />
+</head>
+<body>    
+<!-- youtubeCommentQuiz base template -->
+<ul id="youtubeCommentQuiz" class="jcarousel-skin-tango displayNone">
+</ul>
+<!-- /youtubeCommentQuiz base template -->    
+<!-- quizStage Template -->
+<div id="quizStageTemplate" class="displayNone">
+    <div class="quizStage">
+        <div class="quizStageTop">
+            <div id="video1"></div>
+            <div id="video2"></div>
+            <div id="video3"></div>
+        </div>
+        <div class="quizStageMiddle"><div id="comment"></div></div>
+        <div class="quizStageBottom">
+            <div class="quizStageBottomTop">
+                <div id="buzzer1"><span>1</span></div>
+                <div id="buzzer2"><span>2</span></div>
+                <div id="buzzer3"><span>3</span></div>
+            </div>
+            <div class="quizStageBottomBottom">
+                <div id="share"><span></span></div>
+            </div>            
+        </div>
+    </div>
+</div>
+<!-- /quizStage Template -->    
+<!-- stage Template (for all other stages) -->
+<div id="stageTemplate" class="displayNone">
+    <div class="stage">
+        <div class="stageTop"></div>
+        <div class="stageMiddle"></div>
+        <div class="stageBottom">
+            <div class="stageBottomTop"></div>
+            <div class="stageBottomBottom"></div>            
+        </div>
+    </div>
+</div>
+<!-- /stage Template -->
+<!-- categoryDropdown Template -->
+<div id="categoryDropdownTemplate" class="displayNone">
+    <ul id="categoryDropdown">
+        <li><span id="choose">Choose a category</span>
+            <ul>
+                <li id="Animals"><span>Animals</span></li>
+                <li id="Comedy"><span>Comedy</span></li>
+                <li id="Howto"><span>Howto</span></li>
+                <li id="People"><span>People</span></li>
+                <li id="Sports"><span>Sports</span></li>
+                <li id="Autos"><span>Vehicles</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- /categoryDropdown Template -->
+<!-- resultIndicator Template -->
+<div id="resultIndicatorTemplate" class="displayNone">
+    <div class="resultIndicator">
+        <div class="resultIndicatorTop">3</div>
+        <div class="resultIndicatorMiddle">4</div>        
+        <div class="resultIndicatorBottom">5</div>
+    </div>    
+</div>
+<!-- /resultIndicator Template -->
+<!-- Colorbox Content -->
+<div class="displayNone">
+    <!-- help Content -->
+    <div id="helpContent">
+        <p class="center">You&#39;ll get <span class="highlighted">7 questions</span>, each with<br />
+        <span class="highlighted">3 videos</span> and <span class="highlighted">one comment</span> <img src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/miniComment.png" />.<br />
+        <span class="highlighted">Choose</span> <img src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/miniVideoButton1.png" /><img src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/miniVideoButton2.png" />
+        <img src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/miniVideoButton3.png" />
+        to which video a comment belongs.<br />
+        Use the <span class="highlighted">reload button</span> <img src="https://s3-eu-west-1.amazonaws.com/youtubecommentquiz/assets/images/miniReloadButton.png" /> three times to receive a new set.
+        </p>
+    </div> 
+    <!-- /help Content -->
+    <!-- credits Content -->
+    <div id="creditsContent">
+        <div id="creditsContentWrapper">
+            <p><span class="strong">youtubeCommentQuiz</span> is a just for fun, mostly nightly build, mashup and online-quiz drafted and engineered by <a href="http://github.com/steffenlohaus/" target="_blank">Steffen Lohaus</a>.</p>
+            <p>See <!-- the story on blog.mappednoises.com and -->the <a href="https://github.com/steffenlohaus/youtubeCommentQuiz" target="_blank">code</a> and <a href="https://github.com/steffenlohaus/youtubeCommentQuiz/issues" target="_blank">planned features, bugtracking</a> on github.com.</p>
+            <p>Tons of thanks to SC for creating the <a href="http://soundcloud.com/steffenlohaus/youtubecommentquizlovelythem" target="_blank">lovely theme</a> and also to Bene, <a href="http://www.beschteleben.de/" target="_blank">Dima</a> and <a href="http://www.two-giants.com/" target="_blank">Stas</a> for inspiring beta testing and feedback.</p>
+            <p>Here comes the legal stuff...</p>
+            <p><span class="strong">Responsible for this service</span> as defined by <a href="http://www.gesetze-im-internet.de/tmg/__5.html" target="_blank">TMG &sect;5</a> is Steffen Lohaus mainly operating in Kettlerstra&szlig;e 15 in Ludwigshafen located in good bold Germany. Send him an message via steffenlohaus@googlemail.com.</p>
+            <p><span class="strong">Liability for content</span><br />
+            Randomly using the <a href="http://code.google.com/intl/de-DE/apis/youtube/2.0/reference.html" target="_blank">youtube video API</a> (as third party information) without knowing the user or manipulating the displayed content (according to <a href="http://www.gesetze-im-internet.de/tmg/__8.html" target="_blank">TMG &sect;8</a>) Steffen accepts no liability for the provided content.</p>
+            <p><span class="strong">Liability for links</span><br />
+            Regarding to third party site links within youtubeCommentQuiz Steffen promises to promptly delete a link upon becoming aware that it violates the law.</p>
+            <p><span class="strong">Data protection and privacy</span><br />
+            Steffen does not store any of your data on his own server. BUT this service is provided by tumblr while using google Analytics. So please read the notifications concerning data protection and privacy policies on <a href="http://www.tumblr.com/policy/en/privacy" target="_blank">tumblr.com</a> and <a href="http://www.google.com/intl/en/analytics/privacyoverview.html" target="_blank">google.com/analytics</a>.</p>
+        </div>
+    </div>
+    <!-- credits Content -->
+</div>
+<!-- /Colorbox Content -->
+</body>
+</html>
